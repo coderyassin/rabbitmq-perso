@@ -3,6 +3,7 @@ package org.yascode.rabbitmqperso.config;
 import org.springframework.amqp.rabbit.connection.AbstractConnectionFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,6 +34,11 @@ public class RabbitMqConfig {
         factory.setUsername(username);
         factory.setPassword(password);
         return factory;
+    }
+
+    @Bean
+    public RabbitAdmin rabbitAdmin(){
+        return new RabbitAdmin(connectionFactory());
     }
 
     @Bean

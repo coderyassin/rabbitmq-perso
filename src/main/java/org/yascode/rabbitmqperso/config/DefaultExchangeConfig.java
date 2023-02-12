@@ -49,8 +49,8 @@ public class DefaultExchangeConfig {
     }
 
     @Autowired
-    public void setAmqpAdmin(ConnectionFactory connectionFactory) {
-        this.amqpAdmin = new RabbitAdmin(connectionFactory);
+    public void setAmqpAdmin(AmqpAdmin amqpAdmin) {
+        this.amqpAdmin = amqpAdmin;
     }
 
     @PostConstruct
