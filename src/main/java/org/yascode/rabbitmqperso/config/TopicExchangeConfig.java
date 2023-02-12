@@ -7,6 +7,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
@@ -63,6 +64,7 @@ public class TopicExchangeConfig {
         return BindingBuilder.bind(createTopicQueue3()).to(createTopicExchange()).with(binding3);
     }
 
+    @Bean
     public AmqpTemplate topicQueue(ConnectionFactory connectionFactory, MessageConverter messageConverter){
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(messageConverter);
