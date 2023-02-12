@@ -24,11 +24,10 @@ public class DefaultExchangeConfig {
 
     private AmqpAdmin amqpAdmin;
 
-    @Bean
     Queue createQueue1(){
         return new Queue(defaultQueue_1,true,false,false);
     }
-    @Bean
+
     Queue createQueue2(){
         return new Queue(defaultQueue_2,true,false,false);
     }
@@ -50,18 +49,14 @@ public class DefaultExchangeConfig {
     }
 
     @Autowired
-    public void setRabbitAdmin(AmqpAdmin amqpAdmin) {
-        this.amqpAdmin = amqpAdmin;
-    }
-
-    @Bean
-    public AmqpAdmin getRabbitAdmin(ConnectionFactory connectionFactory) {
-        return new RabbitAdmin(connectionFactory);
+    public void setAmqpAdmin(ConnectionFactory connectionFactory) {
+        this.amqpAdmin = new RabbitAdmin(connectionFactory);
     }
 
     @PostConstruct
-    public void init(){
+    public void declareQueue() {
         amqpAdmin.declareQueue(createQueue1());
         amqpAdmin.declareQueue(createQueue2());
     }
+
 }
