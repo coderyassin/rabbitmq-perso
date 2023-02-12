@@ -43,6 +43,6 @@ public class DirectExchangeController {
         }
         MessageDto message = new MessageDto("direct", LocalDateTime.now());
         directQueue.convertAndSend(key,message);
-        return "Success";
+        return "Success Direct";
     }
 }
